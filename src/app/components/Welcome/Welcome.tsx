@@ -1,5 +1,5 @@
+import { Text } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
-import classes from './Welcome.module.css';
 
 function Welcome(): JSX.Element {
   const [message, setMessage] = useState('');
@@ -10,7 +10,7 @@ function Welcome(): JSX.Element {
       .then((data) => setMessage(data.message));
   }, []);
 
-  return <p className={classes.message}>{message}</p>;
+  return <Text fontWeight={'bold'}>{message}</Text>;
 }
 
 export default Welcome;
