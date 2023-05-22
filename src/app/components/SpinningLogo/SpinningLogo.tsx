@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/react';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styles from './SpinningLogo.module.css';
 
 interface SpinningLogoProps {
@@ -13,8 +13,8 @@ interface SpinningLogoProps {
   alt?: string;
 }
 
-const SpinningLogo = ({ src, alt, ...props }: SpinningLogoProps): JSX.Element => {
-  return <Image src={src} className={styles['App-logo']} alt={alt} {...props} />;
-};
+const SpinningLogo: FunctionComponent<SpinningLogoProps> = ({ src, alt, ...rest }): JSX.Element => (
+  <Image src={src} className={styles['App-logo']} alt={alt} {...rest} />
+);
 
 export default SpinningLogo;

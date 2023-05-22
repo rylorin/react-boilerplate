@@ -1,32 +1,27 @@
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, Flex, Link, Spacer, Text, VStack, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Box, Code, Link, Spacer, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes as Switch } from 'react-router-dom';
+
 import { Button } from './components/Button/Button';
+import NavBar from './components/NavBar/NavBar';
 import SpinningLogo from './components/SpinningLogo/SpinningLogo';
 import Welcome from './components/Welcome/Welcome';
+import links from './links';
 import logo from './logo.svg';
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   const [count, setCount] = useState<number>(0);
-  const { toggleColorMode } = useColorMode();
-  const displayLightModeToggle = useColorModeValue('none', 'display');
-  const displayDarkModeToggle = useColorModeValue('display', 'none');
   const linkColor = useColorModeValue('cyan.500', '#61dafb');
 
   return (
     <Router>
       <VStack as="header" alignItems="center" h="100%">
-        <Flex w="100%" justifyContent="right" m="2">
-          <Spacer />
-          <MoonIcon display={displayDarkModeToggle} m="2" onClick={toggleColorMode} />
-          <SunIcon display={displayLightModeToggle} m="2" onClick={toggleColorMode} />
-        </Flex>
+        <NavBar links={links} />
         <SpinningLogo src={logo} alt="logo" />
         <Welcome />
         <Button onClick={() => setCount((count) => count + 1)} label={'count is: ' + count} backgroundColor="white" />
         <Text>
-          Edit <code>App.tsx</code> and save to test HMR updates.
+          Edit <Code>App.tsx</Code> and save to test HMR updates.
         </Text>
         <Box>
           <Link color={linkColor} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
@@ -47,13 +42,14 @@ function App(): JSX.Element {
           </Link>
         </Box>
         <Switch>
-          <Route path="/about" element={<main>About</main>} />
-          <Route path="/" element={<main>Home</main>} />
+          {Object.entries(links).map(([K, V]) => (
+            <Route key={K} path={K} element={<main>{V}</main>} />
+          ))}
         </Switch>
         <Spacer />
       </VStack>
     </Router>
   );
-}
+};
 
 export default App;

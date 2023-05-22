@@ -10,7 +10,7 @@ function Welcome(): JSX.Element {
       .then((data) => setMessage(data.message));
   }, []);
 
-  return <Text fontWeight={'bold'}>{message}</Text>;
+  return <Text fontWeight="bold">{message}</Text>;
 }
 
 export default Welcome;

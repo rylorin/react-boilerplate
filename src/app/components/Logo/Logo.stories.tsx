@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SpinningLogo from './SpinningLogo';
+import Logo from './Logo';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Component/SpinningLogo',
-  component: SpinningLogo,
+  title: 'Component/Logo',
+  component: Logo,
   tags: ['autodocs'],
-} satisfies Meta<typeof SpinningLogo>;
+} satisfies Meta<typeof Logo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
