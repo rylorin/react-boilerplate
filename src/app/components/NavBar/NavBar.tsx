@@ -15,7 +15,7 @@ const NavBar: FunctionComponent<NavBarProps> = ({ links, ...rest }): JSX.Element
   const { toggleColorMode } = useColorMode();
   const displayLightModeToggle = useColorModeValue('none', 'display');
   const displayDarkModeToggle = useColorModeValue('display', 'none');
-  const [to, _V] = Object.entries(links).shift() || ['/', undefined];
+  const to = Object.keys(links).shift() || '/';
 
   return (
     <NavBarContainer {...rest}>
