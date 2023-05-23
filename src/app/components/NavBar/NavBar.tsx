@@ -1,7 +1,7 @@
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, Link, Spacer, Stack, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import React, { FunctionComponent, ReactNode } from 'react';
-
+import { Link as RouteLink } from 'react-router-dom';
 import logo from '../../logo.svg';
 import Logo from '../Logo/Logo';
 
@@ -15,10 +15,13 @@ const NavBar: FunctionComponent<NavBarProps> = ({ links, ...rest }): JSX.Element
   const { toggleColorMode } = useColorMode();
   const displayLightModeToggle = useColorModeValue('none', 'display');
   const displayDarkModeToggle = useColorModeValue('display', 'none');
+  const [to, _V] = Object.entries(links).shift() || ['/', undefined];
 
   return (
     <NavBarContainer {...rest}>
-      <Logo w="40px" h="40px" src={logo} />
+      <RouteLink to={to}>
+        <Logo w="40px" h="40px" src={logo} />
+      </RouteLink>
       <Spacer />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks links={links} isOpen={isOpen} />
@@ -58,9 +61,9 @@ type MenuItemProps = { to: string; children: ReactNode };
 
 const MenuItem: FunctionComponent<MenuItemProps> = ({ children, to = '/', ...rest }): JSX.Element => {
   return (
-    <Link href={to}>
+    <Link href={to} as="span">
       <Text display="block" {...rest}>
-        {children}
+        <RouteLink to={to}>{children}</RouteLink>
       </Text>
     </Link>
   );
