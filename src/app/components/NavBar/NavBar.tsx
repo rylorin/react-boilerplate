@@ -1,8 +1,9 @@
-import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, Link, Spacer, Stack, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Flex, IconButton, Link, Spacer, Stack, Text } from '@chakra-ui/react';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import logo from '../../logo.svg';
+import ColorModeToggle from '../ColorModeToggle/ColorModeToggle';
 import Logo from '../Logo/Logo';
 
 type NavBarProps = {
@@ -12,9 +13,6 @@ type NavBarProps = {
 const NavBar: FunctionComponent<NavBarProps> = ({ links, ...rest }): JSX.Element => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const { toggleColorMode } = useColorMode();
-  const displayLightModeToggle = useColorModeValue('none', 'display');
-  const displayDarkModeToggle = useColorModeValue('display', 'none');
   const to = Object.keys(links).shift() || '/';
 
   return (
@@ -23,22 +21,10 @@ const NavBar: FunctionComponent<NavBarProps> = ({ links, ...rest }): JSX.Element
         <Logo w="40px" h="40px" src={logo} />
       </RouteLink>
       <Spacer />
+      <ColorModeToggle mr="2" hideFrom="md" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks links={links} isOpen={isOpen} />
-      <IconButton
-        aria-label="Dark mode"
-        display={displayDarkModeToggle}
-        onClick={toggleColorMode}
-        icon={<MoonIcon />}
-        ml="2"
-      />
-      <IconButton
-        aria-label="Light mode"
-        display={displayLightModeToggle}
-        onClick={toggleColorMode}
-        icon={<SunIcon />}
-        ml="2"
-      />
+      <ColorModeToggle ml="2" hideBelow="md" />
     </NavBarContainer>
   );
 };

@@ -8,7 +8,7 @@ const { Button, Link, Code } = chakraTheme.components;
 
 // 2. Add your theme extensions
 const extensions: ThemeOverride = {
-  config: { initialColorMode: 'dark', useSystemColorMode: false },
+  config: { initialColorMode: 'system', useSystemColorMode: true },
   components: {
     Button,
     Link,
