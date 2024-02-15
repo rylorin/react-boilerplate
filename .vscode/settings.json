@@ -11,11 +11,10 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.format": true,
-    "source.organizeImports": true,
-    // Sort package.json keys with https://marketplace.visualstudio.com/items?itemName=unional.vscode-sort-package-json
-    "source.sortPackageJson": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.format": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortPackageJson": "explicit"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
